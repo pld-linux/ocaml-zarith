@@ -2,13 +2,14 @@
 # Conditional build:
 %bcond_without	opt		# build opt
 
+%define		module	zarith
 Summary:	Zarith: arbitrary-precision integers
-Name:		zarith
+Name:		ocaml-zarith
 Version:	1.2.1
 Release:	1
 License:	GPL
 Group:		Applications/Math
-Source0:	http://forge.ocamlcore.org/frs/download.php/1199/%{name}-%{version}.tgz
+Source0:	http://forge.ocamlcore.org/frs/download.php/1199/%{module}-%{version}.tgz
 # Source0-md5:	b507aaf2469103bb9e54291ff8def5c7
 URL:		http://forge.ocamlcore.org/projects/zarith
 BuildRequires:	bash
@@ -35,7 +36,7 @@ This package contains files needed to develop OCaml programs using
 zarith library.
 
 %prep
-%setup -q
+%setup -q -n %{module}-%{version}
 
 %build
 CFLAGS="%{rpmcflags}" \
@@ -54,11 +55,11 @@ install -d $OCAMLFIND_DESTDIR $OCAMLFIND_DESTDIR/stublibs
 	DESTDIR=$RPM_BUILD_ROOT
 
 # move to dir pld ocamlfind looks
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/%{name}
-mv $OCAMLFIND_DESTDIR/%{name}/META \
-	$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/%{name}
-cat <<EOF >> $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/%{name}/META
-directory="+%{name}"
+install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/%{module}
+mv $OCAMLFIND_DESTDIR/%{module}/META \
+	$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/%{module}
+cat <<EOF >> $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/%{module}/META
+directory="+%{module}"
 EOF
 
 %clean
@@ -68,17 +69,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/*.so
 %{_libdir}/ocaml/stublibs/*.so.owner
-%dir %{_libdir}/ocaml/%{name}
-%{_libdir}/ocaml/%{name}/*.cmxs
-%{_libdir}/ocaml/site-lib/%{name}
+%dir %{_libdir}/ocaml/%{module}
+%{_libdir}/ocaml/%{module}/*.cmxs
+%{_libdir}/ocaml/site-lib/%{module}
 
 %files devel
 %defattr(644,root,root,755)
 %doc LICENSE
-%{_libdir}/ocaml/%{name}/*.cm[axi]
-%{_libdir}/ocaml/%{name}/*.mli
-%{_libdir}/ocaml/%{name}/*.h
+%{_libdir}/ocaml/%{module}/*.cm[axi]
+%{_libdir}/ocaml/%{module}/*.mli
+%{_libdir}/ocaml/%{module}/*.h
 %if %{with opt}
-%{_libdir}/ocaml/%{name}/*.[ao]
-%{_libdir}/ocaml/%{name}/*.cmxa
+%{_libdir}/ocaml/%{module}/*.[ao]
+%{_libdir}/ocaml/%{module}/*.cmxa
 %endif
