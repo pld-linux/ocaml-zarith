@@ -6,7 +6,7 @@
 Summary:	Zarith: arbitrary-precision integers
 Name:		ocaml-zarith
 Version:	1.2.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Math
 Source0:	http://forge.ocamlcore.org/frs/download.php/1199/%{module}-%{version}.tgz
