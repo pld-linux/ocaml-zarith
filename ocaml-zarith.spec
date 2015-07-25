@@ -49,7 +49,7 @@ CFLAGS="%{rpmcflags}" \
 	-installdir $RPM_BUILD_ROOT/%{_libdir}/ocaml \
 	-gmp
 
-%{__make} VERBOSE=1
+%{__make} -j1 VERBOSE=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
