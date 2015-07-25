@@ -1,12 +1,17 @@
 #
 # Conditional build:
-%bcond_without	opt		# build opt
+%bcond_without	ocaml_opt	# skip building native optimized binaries (bytecode is always built)
+
+# not yet available on x32 (ocaml 4.02.1), remove when upstream will support it
+%ifnarch %{ix86} %{x8664} arm aarch64 ppc sparc sparcv9
+%undefine	with_ocaml_opt
+%endif
 
 %define		module	zarith
 Summary:	Zarith: arbitrary-precision integers
 Name:		ocaml-zarith
 Version:	1.2.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Math
 Source0:	http://forge.ocamlcore.org/frs/download.php/1199/%{module}-%{version}.tgz
@@ -70,7 +75,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/*.so
 %{_libdir}/ocaml/stublibs/*.so.owner
 %dir %{_libdir}/ocaml/%{module}
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/%{module}/*.cmxs
+%endif
 %{_libdir}/ocaml/site-lib/%{module}
 
 %files devel
@@ -79,7 +86,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/%{module}/*.cm[axi]
 %{_libdir}/ocaml/%{module}/*.mli
 %{_libdir}/ocaml/%{module}/*.h
-%if %{with opt}
-%{_libdir}/ocaml/%{module}/*.[ao]
+%{_libdir}/ocaml/%{module}/libzarith.a
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/%{module}/zarith.a
 %{_libdir}/ocaml/%{module}/*.cmxa
 %endif
