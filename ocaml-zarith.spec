@@ -10,12 +10,12 @@
 %define		module	zarith
 Summary:	Zarith: arbitrary-precision integers
 Name:		ocaml-zarith
-Version:	1.2.1
-Release:	5
+Version:	1.4.1
+Release:	1
 License:	GPL
 Group:		Applications/Math
-Source0:	http://forge.ocamlcore.org/frs/download.php/1199/%{module}-%{version}.tgz
-# Source0-md5:	b507aaf2469103bb9e54291ff8def5c7
+Source0:	http://forge.ocamlcore.org/frs/download.php/1574/%{module}-%{version}.tgz
+# Source0-md5:	9ab2482d57f632c9cb3d10149138bc6e
 URL:		http://forge.ocamlcore.org/projects/zarith
 BuildRequires:	bash
 BuildRequires:	gmp-devel
