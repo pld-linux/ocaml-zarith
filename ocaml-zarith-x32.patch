@@ -1,0 +1,15 @@
+--- Zarith-release-1.9.1/configure.orig	2019-08-28 16:17:04.000000000 +0200
++++ Zarith-release-1.9.1/configure	2019-12-28 15:42:01.220520989 +0100
+@@ -323,7 +323,11 @@
+             arch='x86_64'
+         fi
+         ;;
+-    i486-*linux-gnu|i686-*linux-gnu|i486-kfreebsd-gnu)
++    x86_64-*linux-gnux32)
++        ccdef="-DZ_ELF -DZ_DOT_LABEL_PREFIX $ccdef"
++        arch='x86_64'
++        ;;
++    i[456]86-*linux-gnu|iathlon-*linux-gnu|i486-kfreebsd-gnu)
+         ccdef="-DZ_ELF -DZ_DOT_LABEL_PREFIX $ccdef"
+         arch='i686';;
+     i686-*cygwin)
