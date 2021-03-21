@@ -11,14 +11,13 @@
 Summary:	Zarith: arbitrary-precision integers
 Summary(pl.UTF-8):	Zarith - liczby całkowite dowolnej precyzji
 Name:		ocaml-zarith
-Version:	1.9.1
-Release:	2
+Version:	1.12
+Release:	1
 License:	LGPL v2 with linking exception
 Group:		Applications/Math
 #Source0Download: https://github.com/ocaml/Zarith/releases
 Source0:	https://github.com/ocaml/Zarith/archive/release-%{version}/Zarith-%{version}.tar.gz
-# Source0-md5:	af41b7534a4c91a8f774f04e307c1c66
-Patch0:		%{name}-x32.patch
+# Source0-md5:	bf368f3d9e20b6b446d54681afc05a04
 URL:		http://github.com/ocaml/Zarith
 BuildRequires:	bash
 BuildRequires:	gmp-devel
@@ -58,13 +57,11 @@ przy użyciu biblioteki Zarith.
 
 %prep
 %setup -q -n Zarith-release-%{version}
-%patch0 -p1
 
 %build
 CC="%{__cc}" \
 CFLAGS="%{rpmcflags}" \
 ./configure \
-	-host %{_target_platform} \
 	-installdir $RPM_BUILD_ROOT%{_libdir}/ocaml \
 	-gmp
 
