@@ -12,7 +12,7 @@ Summary:	Zarith: arbitrary-precision integers
 Summary(pl.UTF-8):	Zarith - liczby całkowite dowolnej precyzji
 Name:		ocaml-zarith
 Version:	1.12
-Release:	2
+Release:	3
 License:	LGPL v2 with linking exception
 Group:		Applications/Math
 #Source0Download: https://github.com/ocaml/Zarith/releases
@@ -75,12 +75,7 @@ install -d $OCAMLFIND_DESTDIR $OCAMLFIND_DESTDIR/stublibs
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/%{module}
-cat <<EOF >> $OCAMLFIND_DESTDIR/%{module}/META
-directory="+%{module}"
-EOF
-ln -sr $OCAMLFIND_DESTDIR/%{module}/META \
-	$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/%{module}
+install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/
 
 # not required with system package manager
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/stublibs/*.so.owner
@@ -97,7 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %attr(755,root,root) %{_libdir}/ocaml/%{module}/zarith.cmxs
 %endif
-%{_libdir}/ocaml/site-lib/%{module}
 
 %files devel
 %defattr(644,root,root,755)
