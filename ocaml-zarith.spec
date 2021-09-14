@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	ocaml_opt	# skip building native optimized binaries (bytecode is always built)
+%bcond_without	ocaml_opt	# native optimized binaries (bytecode is always built)
 
 # not yet available on x32 (ocaml 4.02.1), remove when upstream will support it
 %ifnarch %{ix86} %{x8664} %{arm} aarch64 ppc sparc sparcv9
@@ -21,7 +21,7 @@ Source0:	https://github.com/ocaml/Zarith/archive/release-%{version}/Zarith-%{ver
 URL:		http://github.com/ocaml/Zarith
 BuildRequires:	bash
 BuildRequires:	gmp-devel
-BuildRequires:	ocaml >= 3.12.1
+BuildRequires:	ocaml >= 1:4.04
 BuildRequires:	ocaml-findlib
 BuildRequires:	perl-base
 %requires_eq	ocaml-runtime
