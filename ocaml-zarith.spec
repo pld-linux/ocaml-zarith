@@ -12,7 +12,7 @@ Summary:	Zarith: arbitrary-precision integers
 Summary(pl.UTF-8):	Zarith - liczby całkowite dowolnej precyzji
 Name:		ocaml-zarith
 Version:	1.12
-Release:	6
+Release:	7
 License:	LGPL v2 with linking exception
 Group:		Applications/Math
 #Source0Download: https://github.com/ocaml/Zarith/releases
@@ -25,8 +25,7 @@ BuildRequires:	ocaml >= 1:4.04
 BuildRequires:	ocaml-findlib
 BuildRequires:	perl-base
 %requires_eq	ocaml-runtime
-# does not work on x32 because sizeof(intnat) != sizeof(mp_limb_t) (4 != 8)
-ExclusiveArch:	%{ix86} %{x8664} %{arm} aarch64 ppc sparc sparcv9
+ExclusiveArch:	%{ix86} %{x8664} x32 %{arm} aarch64 ppc sparc sparcv9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
